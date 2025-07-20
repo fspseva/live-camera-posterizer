@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Camera Dithering Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Live Camera Dithering</h1>
+            <p>Real-time camera feed with custom pattern dithering</p>
+        </header>
+
+        <main>
+            <section class="camera-section">
+                <div class="camera-container">
+                    <video id="webcam" autoplay muted playsinline></video>
+                    <canvas id="outputCanvas"></canvas>
+                </div>
+                
+                <div class="camera-controls">
+                    <button id="startBtn">Start Camera</button>
+                    <button id="stopBtn" disabled>Stop Camera</button>
+                    <button id="snapshotBtn" disabled>Take Snapshot</button>
+                </div>
+            </section>
+
+
+            <section class="controls-section">
+                <div class="control-group">
+                    <label for="stepsSlider">Brightness Steps:</label>
+                    <input type="range" id="stepsSlider" min="2" max="16" value="4" />
+                    <span id="stepsValue">4</span>
+                    <div class="steps-container">
+                        <div id="stepsPreview" class="steps-preview"></div>
+                        <button id="randomColorsBtn" class="random-btn" title="Randomize all colors">Random</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="pixelSizeSlider">Pixel Size:</label>
+                    <input type="range" id="pixelSizeSlider" min="2" max="20" value="8" />
+                    <span id="pixelSizeValue">8</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="contrastSlider">Contrast:</label>
+                    <input type="range" id="contrastSlider" min="0.5" max="3" step="0.1" value="1" />
+                    <span id="contrastValue">1.0</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="resolutionSelect">Resolution:</label>
+                    <select id="resolutionSelect">
+                        <option value="low">Low (160x120)</option>
+                        <option value="medium" selected>Medium (320x240)</option>
+                        <option value="high">High (640x480)</option>
+                        <option value="ultra">Ultra (1280x720)</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="effects-section">
+                <h2>EFFECTS</h2>
+                
+                <div class="effects-controls">
+                    <div class="control-group">
+                        <label for="fpsSlider">Frame Rate:</label>
+                        <input type="range" id="fpsSlider" min="5" max="60" value="30" />
+                        <span id="fpsSliderValue">30 FPS</span>
+                    </div>
+
+
+                    <div class="control-group">
+                        <label for="colorFlashSlider">Color Flash:</label>
+                        <input type="range" id="colorFlashSlider" min="0" max="100" value="0" />
+                        <span id="colorFlashValue">0%</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="color-editor" id="colorEditor" style="display: none;">
+                <h3>Edit Color for Step <span id="selectedStepIndex">1</span></h3>
+                
+                <div class="color-controls">
+                    <div class="color-preview">
+                        <div id="colorSwatch" class="color-swatch"></div>
+                    </div>
+                    
+                    <div class="step-type-controls">
+                        <div class="type-selector">
+                            <input type="radio" id="useColor" name="stepType" value="color" checked>
+                            <label for="useColor">Solid Color</label>
+                            
+                            <input type="radio" id="useImage" name="stepType" value="image">
+                            <label for="useImage">Image</label>
+                        </div>
+                        
+                        <div id="colorControls" class="hsb-controls">
+                            <div class="control-group">
+                                <label for="hueSlider">Hue:</label>
+                                <input type="range" id="hueSlider" min="0" max="360" value="0" />
+                                <span id="hueValue">0°</span>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="saturationSlider">Saturation:</label>
+                                <input type="range" id="saturationSlider" min="0" max="100" value="0" />
+                                <span id="saturationValue">0%</span>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="brightnessSlider">Brightness:</label>
+                                <input type="range" id="brightnessSlider" min="0" max="100" value="50" />
+                                <span id="brightnessValue">50%</span>
+                            </div>
+                        </div>
+                        
+                        <div id="imageControls" class="image-controls" style="display: none;">
+                            <input type="file" id="stepImageInput" accept="image/*" />
+                            <div id="imagePreview" class="step-image-preview"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="color-actions">
+                    <button id="resetColorBtn">Reset to Gray</button>
+                    <button id="resetAllColorsBtn">Reset All Colors</button>
+                    <button id="closeColorEditor">Close</button>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="performance-info">
+                    <span id="fpsCounter">FPS: 0</span>
+                    <span id="processingTime">Processing: 0ms</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
