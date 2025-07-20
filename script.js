@@ -1,4 +1,4 @@
-class LiveCameraDithering {
+class LiveCameraPosterizer {
     constructor() {
         this.stream = null;
         this.isProcessing = false;
@@ -755,7 +755,7 @@ class LiveCameraDithering {
 
     takeSnapshot() {
         const link = document.createElement('a');
-        link.download = `dithered-snapshot-${Date.now()}.png`;
+        link.download = `posterized-snapshot-${Date.now()}.png`;
         link.href = this.outputCanvas.toDataURL();
         link.click();
     }
@@ -763,5 +763,5 @@ class LiveCameraDithering {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    new LiveCameraDithering();
+    new LiveCameraPosterizer();
 });
