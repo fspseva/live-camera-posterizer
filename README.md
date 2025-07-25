@@ -19,6 +19,7 @@
   - Contrast control
 - **Color Customization**: HSB color picker for each brightness step
 - **Image Upload**: Upload custom images to use as "pixels" for artistic effects
+- **Sample Images**: Pre-loaded test images available in the `image templates/` folder for quick experimentation
 - **Performance Monitoring**: Real-time FPS and processing time display
 - **Snapshot Capture**: Save your posterized creations as PNG files
 
@@ -27,7 +28,7 @@
 1. **Start Camera**: Click "Start Camera" and allow webcam access
 2. **Adjust Steps**: Use the brightness steps slider to control the posterization level
 3. **Customize Colors**: Click any step swatch to open the color editor
-4. **Upload Images**: Switch to "Image" mode and upload custom images for unique effects
+4. **Upload Images**: Switch to "Image" mode and upload custom images for unique effects (or use the sample images from the `image templates/` folder)
 5. **Apply Effects**: Adjust FPS, color flash, pixel size, and contrast
 6. **Capture**: Take snapshots of your posterized video feed
 
